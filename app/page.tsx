@@ -15,42 +15,42 @@ const products = [
 const bonusProducts = ["BPKB Motor", "Take Over", "BPKB Mobil", "Kredit Bekas", "Top Up Adira"];
 
 const bonusSteps = [
-  "Chat Whatsapp admin dengan data konsumen {Nama, No Whatsapp, Alamat, Unit kendaraan[Merk-Model-Tahun]}",
-  "Konsumen akan ditindaklanjuti (Follow up) oleh Neozava dan Marketing Leasing",
-  "Cek duplikat data konsumen; dialihkan ke leasing lain (Adira, BFI, WOM) jika sudah diproses",
-  "Jika pencairan dana selesai, bonus dibayar Neozava ke Agen",
-  "Bonus berlaku untuk pengajuan sendiri dan orang lain; pemohon tidak akan diberi tahu",
-  "Debitur Adira dengan cicilan berjalan bisa dapat bonus untuk Top up; tidak berlaku BFI/WOM aktif kecuali BPKB keluar",
+  "Chat Whatsapp admin, dan berikan {Nama, No Whatsapp, Alamat dan Unit kendaraan[Merk-Model-Tahun]} konsumen.",
+  "Konsumen akan ditindaklanjuti (Follow up) oleh Neozava dan Marketing Leasing.",
+  "Cek duplikat, apakah data konsumen sudah diproses oleh leasing sebelumnya atau belum, jika sudah akan dialihkan ke leasing yang lain antara Adira, BFI atau WOM dan kordinasi dengan Agen.",
+  "Jika Konsumen sudah dilakukan pencairan dana dari leasing, Bonus akan dibayar oleh Neozava ke Agen.",
+  "Bonus bisa didapat untuk pengajuan sendiri dan orang lain, Neozava dan Pihak leasing tidak akan memberitahu Pemohon, bahwa Agen akan mendapatkan bonus dari Neozava.",
+  "Bagi Debitur Adira Finance yang masih memiliki cicilan berjalan dan ingin melakukan Top up pinjaman, bisa mendapatkan Bonus asal info Neozava terlebih dahulu, tidak berlaku untuk debitur aktif BFI dan WOM, kecuali BPKB sudah keluar dan mengajukan kembali.",
 ];
 
 const prosesSteps = [
-  { title: "Konsultasi",   desc: "Chat Whatsapp untuk info simulasi cicilan Adira, BFI, WOM" },
-  { title: "Pilih Leasing", desc: "Pilih salah satu leasing yang sesuai kebutuhan" },
-  { title: "Proses",        desc: "Survei, SLIK/BI Checking, Analisa Dokumen oleh leasing" },
-  { title: "Persetujuan",   desc: "Info penolakan/persetujuan; penyerahan BPKB ke kantor cabang atau surveyor ambil ke rumah" },
-  { title: "Pencairan",     desc: "Dana langsung ditransfer ke rekening pemohon" },
-  { title: "Kredit Bekas",  desc: "Pencairan ke penjual setelah BPKB diserahkan; DP dibayar pembeli ke penjual" },
-  { title: "Take Over",     desc: "Leasing baru ambil BPKB dari leasing lama; sisa hutang diurus leasing baru" },
+  "Chat Whatsapp dan akan diinfo simulasi cicilan Adira, BFI dan WOM.",
+  "Pilih salah satu leasing (Adira, BFI atau WOM).",
+  "Proses oleh leasing, Survei, SLIK/BI Ceking dan Analisa Dokumen Persyaratan.",
+  "Info ditolak dan disetuji, jika disetujui selanjutnya penyerahaan BPKB langsung ke kantor cabang leasing terdekat atau meminta surveyor ambil ke rumah.",
+  "Pencairan langsung ke rekening pemohon dan selesai.",
+  "Untuk kredit bekas pencairan ditransfer ke pemilik kendaraan (penjual) oleh leasing, setelah BPKB diserahkan ke leasing, jika ada DP (Down Payment) dibayar oleh Pemohon (pembeli) ke Penjual.",
+  "Jika Take Over, BPKB di leasing sebelumnya akan diambil oleh leasing yang baru setelah pengajuan disetujui, dan sisa hutang diurus oleh leasing baru, Pemohon akan mendapatkan sisa pencairan dibayar oleh leasing yang baru.",
 ];
 
 const syaratDiri = [
   "Warga Negara Indonesia",
-  "Berusia 21–60 tahun; status: belum menikah, menikah, cerai",
-  "Tempat tinggal: rumah sendiri, pasangan, keluarga, kontrak tahunan",
-  "Profesi: Karyawan (Tetap/Kontrak), PNS, Wiraswasta",
-  "Jenis usaha/profesi tidak boleh melanggar hukum",
+  "Berusia 21-60 tahun dan status perkawinan belum menikah, menikah dan cerai",
+  "Status tempat tinggal rumah sendiri, pasangan, keluarga, kontrak tahunan",
+  "Profesi pekerjaan : Karyawan (Tetap/Kontrak) PNS Wiraswasta",
+  "Tidak bisa diterima apabila Jenis usaha/profesi melanggar hukum",
 ];
 
 const syaratKendaraan = [
-  "Kendaraan milik sendiri dengan BPKB Asli",
-  "BPKB atas nama sendiri, pasangan, atau orang lain (lampirkan bukti pembelian)",
-  "BPKB atas nama perusahaan dengan SPH (Surat Pelepasan Hak)",
-  "Usia kendaraan maks. 20 tahun (Sedan/Jeep/Minibus min. 2006); maks. 13 tahun (Pick-up/Truck min. 2012)",
-  "STNK / Pajak aktif",
+  "Mobil merupakan kendaraan milik sendiri dengan BPKB Asli",
+  "BPKB bisa atas nama sendiri, pasangan dan orang lain (Lampirkan bukti pembelian)",
+  "BPKB bisa atas nama perusahaan dengan syarat melampirkan SPH(Surat Pelepasan Hak)",
+  "Usia kendaraan; Maksimal 20 tahun (Minimal Tahun Kendaraan 2006 untuk jenis mobil sedan, jeep dan minibus) Maksimal 13 tahun (Minimal Tahun Kendaraan 2013 untuk jenis mobil pick-up dan truck)",
+  "STNK / Pajak",
 ];
 
 const syaratDokumen = [
-  "KTP Pemohon & Pasangan (jika menikah)",
+  "KTP Pemohon & Pasangan (Jika sudah menikah)",
   "Kartu Keluarga",
   "Rekening Listrik / PBB",
   "Bukti Penghasilan",
@@ -207,8 +207,8 @@ export default function Home() {
 
         {/* ══ BONUS PROGRAM ══ */}
         <Section bg="bg-white">
-          <SectionLabel>Program Agen</SectionLabel>
-          <SectionHeading>Produk yang Mendapatkan Bonus</SectionHeading>
+          {/* <SectionLabel>Program Agen</SectionLabel> */}
+          <SectionHeading>Cara Dapat Bonus</SectionHeading>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-5">
@@ -240,26 +240,16 @@ export default function Home() {
 
         {/* ══ PROSES GADAI BPKB ══ */}
         <Section bg="bg-white">
-          <SectionLabel>Cara Kerja</SectionLabel>
+          {/* <SectionLabel>Cara Kerja</SectionLabel> */}
           <SectionHeading>Proses Gadai BPKB</SectionHeading>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {prosesSteps.map((step, i) => (
-              <div key={i} className="flex gap-4 items-start">
-                {/* Number badge */}
-                <div className="shrink-0 flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-[#9a0000] text-white text-[12px] font-bold flex items-center justify-center">
-                    {i + 1}
-                  </span>
-                  {i < prosesSteps.length - 1 && (
-                    <div className="w-0.5 h-4 bg-[#f5c0c0] mt-1" />
-                  )}
-                </div>
-                {/* Card */}
-                <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 p-4! mb-2">
-                  <p className="text-[12px] font-bold text-gray-900 mb-1">{step.title}</p>
-                  <p className="text-[12px] text-[#646464] leading-relaxed">{step.desc}</p>
-                </div>
+              <div key={i} className="flex gap-3 items-start p-4! bg-gray-50 rounded-2xl border border-gray-100">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-[#9a0000] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+                  {i + 1}
+                </span>
+                <p className="text-[#646464] text-[13px] leading-relaxed">{step}</p>
               </div>
             ))}
           </div>
