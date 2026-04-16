@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Kredit Bekas",        href: "/kredit-bekas" },
   { label: "Syarat & Ketentuan",  href: "/syarat-ketentuan" },
   { label: "Tabel Bonus",         href: "/tabel-bonus" },
-  { label: "Cabang",              href: "/cabang" },
+  { label: "Cabang Adira",              href: "/cabang-adira" },
   { label: "News",                href: "/news" },
 ];
 
@@ -39,7 +39,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {/* WA button */}
             <a
-              href="https://wa.me/6281219241995"
+              href="https://wa.me/6281219251995"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-[#9a0000] text-white text-[12px] font-bold px-3! py-2! rounded-full"
