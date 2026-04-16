@@ -95,7 +95,7 @@ const WA_SVG = (
 
 /* ─── SECTION WRAPPER ───────────────────────────────── */
 // bg     : Tailwind bg class, default white
-// pad    : true = px-5 py-7, false = no padding (full-bleed)
+// pad    : true = px-5! py-7!, false = no padding (full-bleed)
 
 function Section({
   children, bg = "bg-white", pad = true,
@@ -105,7 +105,7 @@ function Section({
   pad?: boolean;
 }) {
   return (
-    <section className={`${bg} ${pad ? "px-5 py-7" : ""}`}>
+    <section className={`${bg} ${pad ? "px-5! py-9!" : ""}`}>
       {children}
     </section>
   );
@@ -113,7 +113,7 @@ function Section({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] font-extrabold uppercase tracking-[0.15em] text-[#9a0000] mb-1">
+    <p className="text-[10px] font-extrabold uppercase tracking-[0.15em] text-[#9a0000] mb-1.5">
       {children}
     </p>
   );
@@ -121,14 +121,14 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-[18px] font-extrabold text-gray-900 leading-snug mb-5">
+    <h2 className="text-[18px] font-extrabold text-gray-900 leading-snug mb-6">
       {children}
     </h2>
   );
 }
 
 function Divider() {
-  return <div className="h-2 bg-[#f0f0f0]" />;
+  return <div className="h-3 bg-[#f0f0f0]" />;
 }
 
 /* ─── PAGE ──────────────────────────────────────────── */
@@ -164,7 +164,7 @@ export default function Home() {
               <Link
                 key={p.href}
                 href={p.href}
-                className="flex flex-col items-center gap-2 py-4 px-2 bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-2 py-4! px-2! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 transition-transform"
               >
                 <span className="w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl">
                   {p.icon}
@@ -215,7 +215,7 @@ export default function Home() {
             {bonusProducts.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#fdf0f0] text-[#7a0000] text-[12px] font-semibold rounded-full"
+                className="inline-flex items-center gap-1.5 px-3! py-1.5! bg-[#fdf0f0] text-[#7a0000] text-[12px] font-semibold rounded-full"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#9a0000]" />
                 {item}
@@ -224,9 +224,9 @@ export default function Home() {
           </div>
 
           {/* Steps */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-3">
             {bonusSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4 bg-gray-50 rounded-2xl border border-gray-100">
+              <div key={i} className="flex gap-3 items-start p-4! bg-gray-50 rounded-2xl border border-gray-100">
                 <span className="shrink-0 w-6 h-6 rounded-full bg-[#9a0000] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
@@ -243,7 +243,7 @@ export default function Home() {
           <SectionLabel>Cara Kerja</SectionLabel>
           <SectionHeading>Proses Gadai BPKB</SectionHeading>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             {prosesSteps.map((step, i) => (
               <div key={i} className="flex gap-4 items-start">
                 {/* Number badge */}
@@ -256,7 +256,7 @@ export default function Home() {
                   )}
                 </div>
                 {/* Card */}
-                <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 p-4 mb-2">
+                <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 p-4! mb-2">
                   <p className="text-[12px] font-bold text-gray-900 mb-1">{step.title}</p>
                   <p className="text-[12px] text-[#646464] leading-relaxed">{step.desc}</p>
                 </div>
@@ -272,16 +272,16 @@ export default function Home() {
           <SectionLabel>Kelengkapan</SectionLabel>
           <SectionHeading>Persyaratan Pengajuan</SectionHeading>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             {/* Profil Diri */}
             <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3 bg-[#fdf0f0]">
+              <div className="flex items-center gap-3 px-4! py-3! bg-[#fdf0f0]">
                 <span className="text-xl">👤</span>
                 <h3 className="text-[13px] font-extrabold text-gray-900">Profil Diri (Peminjam)</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratDiri.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 px-4 py-3 bg-white">
+                  <li key={i} className="flex items-start gap-3 px-4! py-3! bg-white">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-[#9a0000] text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
                       {i + 1}
                     </span>
@@ -293,13 +293,13 @@ export default function Home() {
 
             {/* Profil Kendaraan */}
             <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3 bg-blue-50">
+              <div className="flex items-center gap-3 px-4! py-3! bg-blue-50">
                 <span className="text-xl">🚘</span>
                 <h3 className="text-[13px] font-extrabold text-gray-900">Profil Kendaraan</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratKendaraan.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 px-4 py-3 bg-white">
+                  <li key={i} className="flex items-start gap-3 px-4! py-3! bg-white">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
                       {i + 1}
                     </span>
@@ -311,13 +311,13 @@ export default function Home() {
 
             {/* Dokumen */}
             <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3 bg-orange-50">
+              <div className="flex items-center gap-3 px-4! py-3! bg-orange-50">
                 <span className="text-xl">📄</span>
                 <h3 className="text-[13px] font-extrabold text-gray-900">Dokumen</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratDokumen.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 px-4 py-3 bg-white">
+                  <li key={i} className="flex items-start gap-3 px-4! py-3! bg-white">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
                       {i + 1}
                     </span>
@@ -336,10 +336,10 @@ export default function Home() {
           <SectionLabel>Simulasi</SectionLabel>
           <SectionHeading>Contoh Skema Angsuran</SectionHeading>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             {/* BPKB Mobil */}
             <div className="rounded-2xl overflow-hidden border border-gray-100">
-              <div className="flex items-center gap-3 px-4 py-3.5 bg-[#9a0000]">
+              <div className="flex items-center gap-3 px-4! py-3.5! bg-[#9a0000]">
                 <span className="text-xl">🚗</span>
                 <h3 className="text-white font-extrabold text-[15px]">BPKB Mobil</h3>
               </div>
@@ -347,13 +347,13 @@ export default function Home() {
                 <tbody>
                   {mobilTable.map(([label, value], i) => (
                     <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4 py-3 text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
-                      <td className="px-4 py-3 text-gray-900 font-bold border-b border-gray-50">{value}</td>
+                      <td className="px-4! py-3! text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
+                      <td className="px-4! py-3! text-gray-900 font-bold border-b border-gray-50">{value}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <div className="px-4 py-3 bg-amber-50 border-t border-amber-100">
+              <div className="px-4! py-3! bg-amber-50 border-t border-amber-100">
                 <p className="text-[11px] text-amber-700 italic">
                   Skema angsuran hanya bersifat simulasi dan bukan persetujuan pinjaman dana.
                 </p>
@@ -362,7 +362,7 @@ export default function Home() {
 
             {/* BPKB Motor */}
             <div className="rounded-2xl overflow-hidden border border-gray-100">
-              <div className="flex items-center gap-3 px-4 py-3.5 bg-[#7a0000]">
+              <div className="flex items-center gap-3 px-4! py-3.5! bg-[#7a0000]">
                 <span className="text-xl">🏍️</span>
                 <h3 className="text-white font-extrabold text-[15px]">BPKB Motor</h3>
               </div>
@@ -370,13 +370,13 @@ export default function Home() {
                 <tbody>
                   {motorTable.map(([label, value], i) => (
                     <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4 py-3 text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
-                      <td className="px-4 py-3 text-gray-900 font-bold border-b border-gray-50">{value}</td>
+                      <td className="px-4! py-3! text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
+                      <td className="px-4! py-3! text-gray-900 font-bold border-b border-gray-50">{value}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <div className="px-4 py-3 bg-amber-50 border-t border-amber-100">
+              <div className="px-4! py-3! bg-amber-50 border-t border-amber-100">
                 <p className="text-[11px] text-amber-700 italic">
                   Skema angsuran hanya bersifat simulasi dan bukan persetujuan pinjaman dana.
                 </p>
@@ -388,7 +388,7 @@ export default function Home() {
         <Divider />
 
         {/* ══ CTA — full bleed green ══ */}
-        <section className="bg-[#9a0000] px-5 py-8">
+        <section className="bg-[#9a0000] px-5! py-10!">
           <h2 className="text-[18px] font-extrabold text-white mb-1.5 leading-snug">
             Siap Mengajukan Pinjaman?
           </h2>
@@ -399,7 +399,7 @@ export default function Home() {
             href="https://wa.me/6281219241995"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2.5 bg-white text-[#9a0000] font-extrabold text-[14px] py-3.5 rounded-full active:scale-95 transition-transform"
+            className="w-full flex items-center justify-center gap-2.5 bg-white text-[#9a0000] font-extrabold text-[14px] py-3.5! rounded-full active:scale-95 transition-transform"
           >
             {WA_SVG}
             Chat WhatsApp — 0812-1924-1995
@@ -409,7 +409,7 @@ export default function Home() {
       </main>
 
       {/* ══ FOOTER ══ */}
-      <footer className="bg-white border-t border-gray-100 px-5 pt-7 pb-8">
+      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-1!0!">
         <Link href="/">
           <Image
             src="/images/Neozava.png"
@@ -454,7 +454,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="border-t border-gray-100 pt-4 flex flex-col gap-1.5">
+        <div className="border-t border-gray-100 pt-4! flex flex-col gap-1.5">
           <p className="text-[11px] text-gray-400 italic leading-relaxed">
             Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan
           </p>
