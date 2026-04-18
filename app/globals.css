@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* ── WordPress article content ── */
+.prose-news { color: #3a3a3a; font-size: 14px; line-height: 1.75; }
+.prose-news h2 { font-size: 17px; font-weight: 800; color: #111; margin: 1.5rem 0 0.5rem; }
+.prose-news h3 { font-size: 15px; font-weight: 700; color: #111; margin: 1.25rem 0 0.4rem; }
+.prose-news p { margin-bottom: 1rem; }
+.prose-news ul, .prose-news ol { padding-left: 1.25rem; margin-bottom: 1rem; }
+.prose-news li { margin-bottom: 0.35rem; }
+.prose-news img { width: 100%; height: auto; border-radius: 12px; margin: 1rem 0; }
+.prose-news a { color: #9a0000; text-decoration: underline; }
+.prose-news blockquote { border-left: 3px solid #9a0000; padding-left: 1rem; color: #646464; font-style: italic; margin: 1rem 0; }
+.prose-news strong { color: #111; font-weight: 700; }
+
 * {
   box-sizing: border-box;
   margin: 0;

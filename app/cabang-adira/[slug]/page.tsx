@@ -66,28 +66,6 @@ function InfoCard({
   );
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="text-[14px] font-extrabold text-gray-900 mb-3!">
-      {children}
-    </h3>
-  );
-}
-
-function NumberedList({ items }: { items: string[] }) {
-  return (
-    <ol className="flex flex-col gap-2! list-none">
-      {items.map((item, i) => (
-        <li key={i} className="flex gap-3! items-start">
-          <span className="shrink-0 w-5! h-5! rounded-full bg-[#9a0000] text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
-            {i + 1}
-          </span>
-          <span className="text-[13px] text-[#646464] leading-snug">{item.replace(/^[⁠\s]+/, "")}</span>
-        </li>
-      ))}
-    </ol>
-  );
-}
 
 function WaButton({
   wa, text, label,
@@ -148,32 +126,6 @@ export default async function CabangDetailPage({
   const district  = toTitle(branch.region.district.district);
   const subDistrict = toTitle(branch.region.subDistrict.subDistrict);
   const pageTitle = `${branch.name} 082114393632 | Gadai BPKB`;
-
-  const tanyaAdmin = [
-    "Simulasi Cicilan Gadai BPKB Motor Mobil",
-    "Simulasi Sisa Take Over",
-    "Simulasi Kredit Motor Mobil Bekas",
-    "Cara Top Up Hutang",
-    "Kredit Mobil Bekas Syariah",
-    "Pelunasan",
-    "Hal Lainnya",
-  ];
-
-  const caraGadai = [
-    "Chat admin melalui WhatsApp.",
-    "Admin akan menanyakan unit kendaraan seperti merk, tipe, dan tahun.",
-    "Info simulasi pencairan, cicilan, tenor dan lain-lain.",
-    "Survey dan proses melengkapi dokumen persyaratan.",
-    "Pencairan bisa transfer atau tunai (datang langsung ke cabang).",
-  ];
-
-  const syarat = [
-    "eKTP Pemohon & eKTP Pasangan/Orang Tua/Penjamin",
-    "Kartu Keluarga",
-    "Bukti Penghasilan seperti slip gaji/mutasi rekening/atau lainnya.",
-    "NPWP untuk BPKB Mobil",
-    "Bukti kepemilikan rumah seperti PBB/Rek Listrik/Struk Token Listrik/atau lainnya.",
-  ];
 
   return (
     <div className="flex flex-col flex-1">
@@ -264,28 +216,12 @@ export default async function CabangDetailPage({
         <div className="h-2! bg-[#f0f0f0]" />
 
         {/* ── Info lists ── */}
-        <div className="bg-white px-5! py-6! flex flex-col gap-7!">
-          {/* Tanya Admin */}
-          <div>
-            <SectionHeading>Tanya Admin di Whatsapp Tentang</SectionHeading>
-            <NumberedList items={tanyaAdmin} />
-          </div>
-
-          <div className="h-px bg-gray-100" />
-
-          {/* Cara Gadai */}
-          <div>
-            <SectionHeading>Cara Gadai BPKB, Top Up, Take Over, Kredit Bekas</SectionHeading>
-            <NumberedList items={caraGadai} />
-          </div>
-
-          <div className="h-px bg-gray-100" />
-
-          {/* Persyaratan */}
-          <div>
-            <SectionHeading>Persyaratan</SectionHeading>
-            <NumberedList items={syarat} />
-          </div>
+        <div className="bg-white">
+          <img
+            src="/images/detail-cabang-adira.jpeg"
+            alt="Detail Cabang Adira"
+            className="w-full h-auto block"
+          />
         </div>
 
         <div className="h-2! bg-[#f0f0f0]" />
