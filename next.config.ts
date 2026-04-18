@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "backend.neozava.com",
       },
+      {
+				protocol: 'https',
+				hostname: 'article.neozava.com',
+				pathname: '/wp-content/uploads/**',
+			},
     ],
   },
 };
