@@ -20,7 +20,7 @@ const WP_BASE = "https://article.neozava.com/wp-json/wp/v2";
 
 async function getPosts(): Promise<WpPost[]> {
   const res = await fetch(`${WP_BASE}/posts?categories=252&_embed&per_page=20`, {
-    // next: { revalidate: 1800 },
+    next: { revalidate: 300 },
   });
   if (!res.ok) return [];
   return res.json();
