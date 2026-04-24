@@ -16,14 +16,14 @@ import Link from "next/link";
 // ];
 
 const navLinks = [
-  { label: "Gadai BPKB Mobil",    href: "/news" },
-  { label: "Gadai BPKB Motor",    href: "/news" },
-  { label: "Take Over",           href: "/news" },
-  { label: "Kredit Bekas",        href: "/news" },
-  { label: "Syarat & Ketentuan",  href: "/syarat-ketentuan" },
-  { label: "Tabel Bonus",         href: "/news" },
-  { label: "Cabang Adira",              href: "/cabang-adira" },
-  { label: "News",                href: "/news" },
+  { label: "Gadai BPKB Mobil",   href: "/news/gadai-bpkb-mobil" },
+  { label: "Gadai BPKB Motor",   href: "/news/gadai-bpkb-motor-2" },
+  { label: "Take Over",          href: "/news/take-over-bpkb" },
+  { label: "Kredit Bekas",       href: "/news/kredit-motor-mobil-bekas" },
+  { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
+  { label: "Tabel Bonus",        href: "/news/tabel-bonus" },
+  { label: "Cabang Adira",       href: "/cabang-adira" },
+  { label: "News",               href: "/news" },
 ];
 
 export default function Navbar() {
