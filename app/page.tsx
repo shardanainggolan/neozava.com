@@ -4,12 +4,20 @@ import Navbar from "./Navbar";
 
 /* ─── DATA ─────────────────────────────────────────── */
 
+// const products = [
+//   { label: "BPKB Motor",   href: "/gadai-bpkb-motor",     icon: "🏍️" },
+//   { label: "Take Over",    href: "/take-over-bpkb-mobil", icon: "🔄" },
+//   { label: "BPKB Mobil",  href: "/gadai-bpkb-mobil",     icon: "🚗" },
+//   { label: "Kredit Bekas", href: "/kredit-mobil-bekas",   icon: "🤝" },
+//   { label: "Top Up Adira", href: "/top-up-adira",         icon: "💳" },
+// ];
+
 const products = [
-  { label: "BPKB Motor",   href: "/gadai-bpkb-motor",     icon: "🏍️" },
-  { label: "Take Over",    href: "/take-over-bpkb-mobil", icon: "🔄" },
-  { label: "BPKB Mobil",  href: "/gadai-bpkb-mobil",     icon: "🚗" },
-  { label: "Kredit Bekas", href: "/kredit-mobil-bekas",   icon: "🤝" },
-  { label: "Top Up Adira", href: "/top-up-adira",         icon: "💳" },
+  { label: "BPKB Motor",   href: "/news",     icon: "🏍️" },
+  { label: "Take Over",    href: "/news", icon: "🔄" },
+  { label: "BPKB Mobil",  href: "/news",     icon: "🚗" },
+  { label: "Kredit Bekas", href: "/news",   icon: "🤝" },
+  { label: "Top Up Adira", href: "/news",         icon: "💳" },
 ];
 
 const bonusProducts = ["BPKB Motor", "Take Over", "BPKB Mobil", "Kredit Bekas", "Top Up Adira"];
@@ -160,9 +168,9 @@ export default function Home() {
           <SectionLabel>Layanan Kami</SectionLabel>
           <SectionHeading>Solusi Keuangan Kendaraan</SectionHeading>
           <div className="grid grid-cols-3 gap-3">
-            {products.map((p) => (
+            {products.map((p, i) => (
               <Link
-                key={p.href}
+                key={i}
                 href={p.href}
                 className="flex flex-col items-center gap-2 py-4! px-2! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 transition-transform"
               >
