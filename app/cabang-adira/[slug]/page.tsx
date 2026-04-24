@@ -125,7 +125,7 @@ export default async function CabangDetailPage({
   const province = toTitle(branch.region.province.province);
   const district  = toTitle(branch.region.district.district);
   const subDistrict = toTitle(branch.region.subDistrict.subDistrict);
-  const pageTitle = `${branch.name} 082114393632 | Gadai BPKB`;
+  const pageTitle = `${branch.name} 081219251995 | Gadai BPKB`;
 
   return (
     <div className="flex flex-col flex-1">

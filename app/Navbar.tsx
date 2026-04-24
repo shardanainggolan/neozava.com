@@ -4,13 +4,24 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// const navLinks = [
+//   { label: "Gadai BPKB Mobil",    href: "/gadai-bpkb-mobil" },
+//   { label: "Gadai BPKB Motor",    href: "/gadai-bpkb-motor" },
+//   { label: "Take Over",           href: "/take-over" },
+//   { label: "Kredit Bekas",        href: "/kredit-bekas" },
+//   { label: "Syarat & Ketentuan",  href: "/syarat-ketentuan" },
+//   { label: "Tabel Bonus",         href: "/tabel-bonus" },
+//   { label: "Cabang Adira",              href: "/cabang-adira" },
+//   { label: "News",                href: "/news" },
+// ];
+
 const navLinks = [
-  { label: "Gadai BPKB Mobil",    href: "/gadai-bpkb-mobil" },
-  { label: "Gadai BPKB Motor",    href: "/gadai-bpkb-motor" },
-  { label: "Take Over",           href: "/take-over" },
-  { label: "Kredit Bekas",        href: "/kredit-bekas" },
+  { label: "Gadai BPKB Mobil",    href: "/news" },
+  { label: "Gadai BPKB Motor",    href: "/news" },
+  { label: "Take Over",           href: "/news" },
+  { label: "Kredit Bekas",        href: "/news" },
   { label: "Syarat & Ketentuan",  href: "/syarat-ketentuan" },
-  { label: "Tabel Bonus",         href: "/tabel-bonus" },
+  { label: "Tabel Bonus",         href: "/news" },
   { label: "Cabang Adira",              href: "/cabang-adira" },
   { label: "News",                href: "/news" },
 ];
@@ -85,7 +96,7 @@ export default function Navbar() {
           <nav className="border-t border-gray-100 bg-white px-3! py-2!">
             <ul className="flex flex-col">
               {navLinks.map((link, i) => (
-                <li key={link.href}>
+                <li key={i}>
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
