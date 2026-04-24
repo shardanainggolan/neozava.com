@@ -13,11 +13,11 @@ import Navbar from "./Navbar";
 // ];
 
 const products = [
-  { label: "BPKB Motor",   href: "/news",     icon: "🏍️" },
-  { label: "Take Over",    href: "/news", icon: "🔄" },
-  { label: "BPKB Mobil",  href: "/news",     icon: "🚗" },
-  { label: "Kredit Bekas", href: "/news",   icon: "🤝" },
-  { label: "Top Up Adira", href: "/news",         icon: "💳" },
+  { label: "BPKB Motor",   href: "/news/gadai-bpkb-motor-2",        icon: "🏍️" },
+  { label: "Take Over",    href: "/news/take-over-bpkb",             icon: "🔄" },
+  { label: "BPKB Mobil",  href: "/news/gadai-bpkb-mobil",           icon: "🚗" },
+  { label: "Kredit Bekas", href: "/news/kredit-motor-mobil-bekas",   icon: "🤝" },
+  { label: "Top Up Adira", href: "/news/tabel-bonus",                icon: "💳" },
 ];
 
 const bonusProducts = ["BPKB Motor", "Take Over", "BPKB Mobil", "Kredit Bekas", "Top Up Adira"];
