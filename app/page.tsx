@@ -152,7 +152,7 @@ export default function Home() {
         {/* ══ HERO — full bleed ══ */}
         <section className="bg-white">
           <Image
-            src="/images/IMG_3640.webp"
+            src="/images/detail-cabang-adira.jpeg"
             alt="Pinjam Uang dan e-commerce otomotif"
             width={430}
             height={280}
@@ -394,7 +394,7 @@ export default function Home() {
             Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
           </p>
           <a
-            href="https://wa.me/6281219251995"
+            href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center gap-2.5 bg-white text-[#9a0000] font-extrabold text-[14px] py-3.5! rounded-full active:scale-95 transition-transform"
@@ -425,7 +425,7 @@ export default function Home() {
         </p>
 
         <a
-          href="https://wa.me/6281219251995"
+          href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-[#9a0000] font-bold text-[13px] mb-5"
