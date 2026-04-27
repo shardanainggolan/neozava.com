@@ -36,7 +36,7 @@ function faxes(b: Branch) {
   return [b.fax1, b.fax2, b.fax3].filter(Boolean);
 }
 
-const WA_DEFAULT = "6282114393632";
+const WA_DEFAULT = "6281219251995";
 
 /* ─── sub-components ────────────────────────────────── */
 

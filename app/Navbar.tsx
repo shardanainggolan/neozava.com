@@ -50,7 +50,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {/* WA button */}
             <a
-              href="https://wa.me/6281219251995"
+              href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-[#9a0000] text-white text-[12px] font-bold px-3! py-2! rounded-full"
