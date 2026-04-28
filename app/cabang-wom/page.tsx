@@ -13,7 +13,7 @@ async function getBranches() {
   }
 
   const json: BranchApiResponse = await res.json();
-  return json.data;
+  return json.data ?? [];
 }
 
 export default async function CabangWomPage() {
