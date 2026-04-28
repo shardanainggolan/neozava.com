@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
+import { API_HOSTNAME } from "./lib/config";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "backend.neozava.com",
+        hostname: API_HOSTNAME,
       },
       {
 				protocol: 'https',

@@ -1,11 +1,11 @@
 import Navbar from "../Navbar";
 import BranchList from "./BranchList";
-import type { BranchApiResponse } from "./types";
+import type { BranchApiResponse } from "../cabang-adira/types";
 import { API_BASE } from "@/lib/config";
 
 async function getBranches() {
-  const res = await fetch(`${API_BASE}/branch`, {
-    next: { revalidate: 3600 }, // revalidate setiap 1 jam
+  const res = await fetch(`${API_BASE}/bfi-branch`, {
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -16,7 +16,7 @@ async function getBranches() {
   return json.data;
 }
 
-export default async function CabangPage() {
+export default async function CabangBfiPage() {
   const branches = await getBranches();
 
   return (
@@ -29,10 +29,10 @@ export default async function CabangPage() {
           Jaringan Kami
         </p>
         <h1 className="text-[22px] font-extrabold text-white leading-snug">
-          Cabang Adira Finance
+          Cabang BFI Finance
         </h1>
         <p className="text-[13px] text-red-100 mt-1! leading-relaxed">
-          Temukan cabang Adira Finance terdekat untuk mengajukan pinjaman
+          Temukan cabang BFI Finance terdekat untuk mengajukan pinjaman
         </p>
       </div>
 
