@@ -23,6 +23,8 @@ const navLinks = [
   { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
   { label: "Tabel Bonus",        href: "/news/tabel-bonus" },
   { label: "Cabang Adira",       href: "/cabang-adira" },
+  { label: "Cabang BFI",        href: "/cabang-bfi" },
+  { label: "Cabang WOM",        href: "/cabang-wom" },
   { label: "News",               href: "/news" },
 ];
 
