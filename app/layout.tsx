@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: "Neozava: Pinjam Uang dan e-commerce otomotif",
@@ -21,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <GoogleTagManager gtmId="AW-16517459637" />
       <body>
         <div id="mobile-shell">{children}</div>
+        <GoogleAnalytics gaId="AW-16517459637" />
       </body>
     </html>
   );
