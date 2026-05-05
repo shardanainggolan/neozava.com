@@ -248,6 +248,13 @@ export default function Home() {
 
         {/* ══ PROSES GADAI BPKB ══ */}
         <Section bg="bg-white">
+          <Image
+            src="/images/proses-gadai.webp"
+            alt="Proses Gadai BPKB"
+            width={430}
+            height={280}
+            className="w-full h-auto block rounded-2xl mb-4!"
+          />
           {/* <SectionLabel>Cara Kerja</SectionLabel> */}
           <SectionHeading>Proses Gadai BPKB</SectionHeading>
 
