@@ -236,6 +236,7 @@ export default function CompanyPage() {
   // Delete
   const [deleteTarget, setDeleteTarget] = useState<Branch | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
 
   // Region chain select
   const [provinces,    setProvinces]    = useState<Province[]>([]);
@@ -428,17 +429,27 @@ export default function CompanyPage() {
   async function handleDelete() {
     if (!deleteTarget) return;
     setDeleting(true);
+    setDeleteError("");
     try {
       const res = await fetch(`${API_BASE}/${cfg.prefix}/${deleteTarget.branchId}`, {
         method: "DELETE",
         headers: authHeader(),
       });
-      const json = await res.json();
+
+      let json: { code?: number; status?: string; message?: string } = {};
+      try { json = await res.json(); } catch { /* non-JSON body */ }
+
       if (json.code === 401) { handleUnauth(); return; }
+
+      if (!res.ok) {
+        setDeleteError(json.message ?? `Gagal menghapus cabang (${res.status})`);
+        return;
+      }
+
       setDeleteTarget(null);
       await fetchBranches();
     } catch {
-      // ignore network errors silently
+      setDeleteError("Gagal terhubung ke server");
     } finally {
       setDeleting(false);
     }
@@ -809,9 +820,14 @@ export default function CompanyPage() {
               Anda akan menghapus{" "}
               <span className="font-bold">&ldquo;{deleteTarget.name}&rdquo;</span>
             </p>
+            {deleteError && (
+              <p className="text-[12px] text-red-600 font-medium bg-red-50 px-3! py-2! rounded-xl mb-3!">
+                {deleteError}
+              </p>
+            )}
             <div className="flex gap-3!">
               <button
-                onClick={() => setDeleteTarget(null)}
+                onClick={() => { setDeleteTarget(null); setDeleteError(""); }}
                 disabled={deleting}
                 className="flex-1 py-2.5! rounded-xl border border-gray-200 text-[13px] font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
               >
