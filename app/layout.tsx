@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Neozava: Pinjam Uang dan e-commerce otomotif",
@@ -23,7 +23,20 @@ export default function RootLayout({
     <html lang="id">
       <body>
         <div id="mobile-shell">{children}</div>
-        <GoogleAnalytics gaId="AW-16517459637" />
+
+        {/* Google Ads */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16517459637"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-16517459637');
+          `}
+        </Script>
       </body>
     </html>
   );
