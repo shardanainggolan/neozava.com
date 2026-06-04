@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Neozava: Pinjam Uang dan e-commerce otomotif",
   description:
     "Gadai BPKB Mobil, Gadai BPKB Motor, Take Over, Kredit Bekas, Top Up Adira. Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan.",
+  verification: {
+    google: "3GI6iadjOOWGeLLSFkzztWJCHfB5bsisG3UzU43HllU",
+  },
 };
 
 export const viewport = {
