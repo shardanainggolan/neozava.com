@@ -224,11 +224,17 @@ export default async function CabangWomDetailPage({
 
         <div className="h-2! bg-[#f0f0f0]" />
 
-        {/* ── Banner image ── */}
+        {/* ── Banner images ── */}
         <div className="bg-white">
           <img
-            src="/images/detail-cabang-adira.jpeg"
+            src="/images/detail-cabang-wom.webp"
             alt="Detail Cabang WOM Finance"
+            className="w-full h-auto block"
+          />
+          <div className="h-2! bg-[#f0f0f0]" />
+          <img
+            src="/images/proses-gadai-bpkb.webp"
+            alt="Proses Gadai BPKB"
             className="w-full h-auto block"
           />
         </div>

@@ -218,11 +218,17 @@ export default async function CabangDetailPage({
 
         <div className="h-2! bg-[#f0f0f0]" />
 
-        {/* ── Info lists ── */}
+        {/* ── Banner images ── */}
         <div className="bg-white">
           <img
-            src="/images/detail-cabang-adira.jpeg"
+            src="/images/detail-cabang-adira-new.webp"
             alt="Detail Cabang Adira"
+            className="w-full h-auto block"
+          />
+          <div className="h-2! bg-[#f0f0f0]" />
+          <img
+            src="/images/proses-gadai-bpkb.webp"
+            alt="Proses Gadai BPKB"
             className="w-full h-auto block"
           />
         </div>
@@ -278,6 +284,23 @@ export default async function CabangDetailPage({
             <WaButton
               wa={WA_DEFAULT}
               text="Halo saya ingin mengajukan Kredit Mobil"
+              label="Ajukan Sekarang"
+            />
+          </div>
+
+          {/* Top Up */}
+          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-4! flex flex-col items-center text-center gap-3!">
+            <span className="text-4xl">💰</span>
+            <div>
+              <h2 className="text-[15px] font-extrabold text-gray-900 mb-1!">Top Up Adira Finance</h2>
+              <p className="text-[12px] text-[#646464] leading-relaxed">
+                Sudah menjadi nasabah Adira Finance? Ajukan penambahan dana pinjaman dengan
+                proses cepat dan mudah.
+              </p>
+            </div>
+            <WaButton
+              wa={WA_DEFAULT}
+              text="Halo saya ingin mengajukan Top Up Adira Finance"
               label="Ajukan Sekarang"
             />
           </div>
