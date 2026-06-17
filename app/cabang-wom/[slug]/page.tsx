@@ -132,7 +132,7 @@ export default async function CabangWomDetailPage({
   const province = toTitle(branch.region.province.province);
   const district  = toTitle(branch.region.district.district);
   const subDistrict = toTitle(branch.region.subDistrict.subDistrict);
-  const pageTitle = `${branch.name} 081219251995 | Gadai BPKB`;
+  const pageTitle = `${branch.name} 081219251995 | Gadai BPKB Dapat Cash Back Chat Whatsapp`;
 
   return (
     <div className="flex flex-col flex-1">
