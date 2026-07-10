@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import { navGroups, navSingleLinks } from "./navData";
 
 /* ─── DATA ─────────────────────────────────────────── */
 
@@ -408,64 +409,92 @@ export default function Home() {
       </main>
 
       {/* ══ FOOTER ══ */}
-      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-1!0! md:px-8! md:pt-14!">
-        <div className="max-w-6xl mx-auto md:flex md:justify-between md:gap-12">
-        <div className="md:max-w-sm">
-        <Link href="/">
-          <Image
-            src="/images/Neozava.png"
-            alt="Neozava"
-            width={110}
-            height={32}
-            className="h-8 w-auto object-contain mb-4"
-          />
-        </Link>
+      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-6! md:px-8! md:pt-14! md:pb-8!">
+        <div className="max-w-6xl mx-auto">
+          <div className="md:grid md:grid-cols-[2fr_1fr_1fr] md:gap-12">
 
-        <p className="text-[13px] text-[#646464] leading-relaxed mb-5">
-          Pinjam Uang dan e-commerce otomotif.<br />
-          Sunburst CBD Lot. 1.2, Jl. Kapt. Soebijanto Djojohadikusumo,<br />
-          BSD City — Tangerang Selatan 15322
-        </p>
+            {/* Brand */}
+            <div className="mb-8! md:mb-0">
+              <Link href="/">
+                <Image
+                  src="/images/Neozava.png"
+                  alt="Neozava"
+                  width={110}
+                  height={32}
+                  className="h-8 w-auto object-contain mb-4"
+                />
+              </Link>
 
-        <a
-          href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-[#9a0000] font-bold text-[13px] mb-5"
-        >
-          {WA_SVG}
-          WA 0812-1925-1995
-        </a>
+              <p className="text-[13px] text-[#646464] leading-relaxed mb-5 md:max-w-xs">
+                Pinjam Uang dan e-commerce otomotif.<br />
+                Sunburst CBD Lot. 1.2, Jl. Kapt. Soebijanto Djojohadikusumo,<br />
+                BSD City — Tangerang Selatan 15322
+              </p>
 
-        <div className="flex gap-5 mb-6 md:mb-0">
-          {[
-            { label: "Facebook",  href: "https://www.facebook.com/neozava" },
-            { label: "Instagram", href: "https://www.instagram.com/neozava" },
-            { label: "Youtube",   href: "https://youtube.com/@csneozava6249?si=VIhmAiFUnKdmMNsr" },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[13px] text-[#646464] hover:text-[#9a0000] transition-colors"
-            >
-              {s.label}
-            </a>
-          ))}
-        </div>
-        </div>
+              <a
+                href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[#9a0000] font-bold text-[13px] mb-5"
+              >
+                {WA_SVG}
+                WA 0812-1925-1995
+              </a>
 
-        <div className="border-t border-gray-100 pt-4! md:border-t-0 md:pt-0! flex flex-col gap-1.5 md:max-w-xs md:items-start">
-          <p className="text-[11px] text-gray-400 italic leading-relaxed">
-            Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan
-          </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-gray-400">
-            {/* <a href="/atom.xml" className="hover:text-[#9a0000] transition-colors">Langganan: Komentar (Atom)</a> */}
-            <Link href="/" className="hover:text-[#9a0000] transition-colors">Beranda</Link>
-            <span>© Neozava 2026</span>
+              <div className="flex gap-5">
+                {[
+                  { label: "Facebook",  href: "https://www.facebook.com/neozava" },
+                  { label: "Instagram", href: "https://www.instagram.com/neozava" },
+                  { label: "Youtube",   href: "https://youtube.com/@csneozava6249?si=VIhmAiFUnKdmMNsr" },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[13px] text-[#646464] hover:text-[#9a0000] transition-colors"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Sitemap columns — same links as the navbar, grouped */}
+            {navGroups.map((group) => (
+              <div key={group.label} className="mb-7! md:mb-0">
+                <SectionLabel>{group.label}</SectionLabel>
+                <ul className="flex flex-col gap-2.5 mt-3! md:mt-4!">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-[13px] text-[#646464] hover:text-[#9a0000] transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        </div>
+
+          {/* Legal bottom bar */}
+          <div className="border-t border-gray-100 mt-8! pt-5! md:mt-10! flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <p className="text-[11px] text-gray-400 italic leading-relaxed md:max-w-md">
+              Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan
+            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-gray-400">
+              {navSingleLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="hover:text-[#9a0000] transition-colors">
+                  {link.label}
+                </Link>
+              ))}
+              <Link href="/" className="hover:text-[#9a0000] transition-colors">Beranda</Link>
+              <span>© Neozava 2026</span>
+            </div>
+          </div>
         </div>
       </footer>
 
