@@ -91,7 +91,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-7 flex-1">
+          <nav className="hidden md:flex items-center gap-7 flex-1 justify-center">
             {navGroups.map((group) => (
               <NavDropdown key={group.label} label={group.label} links={group.links} />
             ))}
