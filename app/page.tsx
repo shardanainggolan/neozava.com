@@ -113,15 +113,17 @@ function Section({
   pad?: boolean;
 }) {
   return (
-    <section className={`${bg} ${pad ? "px-5! py-9!" : ""}`}>
-      {children}
+    <section className={bg}>
+      <div className={`max-w-6xl mx-auto ${pad ? "px-5! py-9! md:px-8! md:py-14!" : ""}`}>
+        {children}
+      </div>
     </section>
   );
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[10px] font-extrabold uppercase tracking-[0.15em] text-[#9a0000] mb-1.5">
+    <p className="text-[10px] md:text-[12px] font-extrabold uppercase tracking-[0.15em] text-[#9a0000] mb-1.5 md:mb-2">
       {children}
     </p>
   );
@@ -129,7 +131,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-[18px] font-extrabold text-gray-900 leading-snug mb-6">
+    <h2 className="text-[18px] md:text-[28px] font-extrabold text-gray-900 leading-snug mb-6 md:mb-8 md:max-w-2xl">
       {children}
     </h2>
   );
@@ -147,18 +149,39 @@ export default function Home() {
 
       <Navbar />
 
-      <main className="flex-1 flex flex-col px-3!">
+      <main className="flex-1 flex flex-col px-3! md:px-0">
 
-        {/* ══ HERO — full bleed ══ */}
+        {/* ══ HERO ══ */}
         <section className="bg-white">
-          <Image
-            src="/images/detail-cabang-adira.jpeg"
-            alt="Pinjam Uang dan e-commerce otomotif"
-            width={430}
-            height={280}
-            className="w-full h-auto block"
-            priority
-          />
+          <div className="max-w-6xl mx-auto md:px-8! md:py-14! md:flex md:items-center md:gap-12">
+            <div className="md:flex-1 md:max-w-md">
+              <h1 className="hidden md:block text-[32px] leading-[1.15] font-extrabold text-gray-900 mb-4">
+                Pinjam Uang dan e-commerce otomotif
+              </h1>
+              <p className="hidden md:block text-[15px] text-[#646464] leading-relaxed mb-7">
+                Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
+              </p>
+              <a
+                href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-2.5 bg-[#9a0000] text-white font-extrabold text-[14px] px-6! py-3.5! rounded-full hover:bg-[#7a0000] transition-colors"
+              >
+                {WA_SVG}
+                Chat WhatsApp — 0812-1925-1995
+              </a>
+            </div>
+            <div className="md:flex-1 md:max-w-sm md:mx-auto">
+              <Image
+                src="/images/detail-cabang-adira.jpeg"
+                alt="Pinjam Uang dan e-commerce otomotif"
+                width={430}
+                height={280}
+                className="w-full h-auto block md:rounded-3xl"
+                priority
+              />
+            </div>
+          </div>
         </section>
 
         <Divider />
@@ -167,17 +190,17 @@ export default function Home() {
         <Section bg="bg-white">
           <SectionLabel>Layanan Kami</SectionLabel>
           <SectionHeading>Solusi Keuangan Kendaraan</SectionHeading>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
             {products.map((p, i) => (
               <Link
                 key={i}
                 href={p.href}
-                className="flex flex-col items-center gap-2 py-4! px-2! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-2 md:gap-3 py-4! px-2! md:py-6! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 md:hover:-translate-y-1 md:hover:shadow-md transition-transform"
               >
-                <span className="w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl">
+                <span className="w-11 h-11 md:w-14 md:h-14 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl md:text-3xl">
                   {p.icon}
                 </span>
-                <span className="text-[11px] font-bold text-gray-700 text-center leading-tight">
+                <span className="text-[11px] md:text-[13px] font-bold text-gray-700 text-center leading-tight">
                   {p.label}
                 </span>
               </Link>
@@ -189,8 +212,8 @@ export default function Home() {
 
         {/* ══ BONUS IMAGES — full bleed ══ */}
         <Section bg="bg-[#f6f6f6]">
-          <div className="flex flex-col gap-3">
-            <div className="rounded-2xl overflow-hidden">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+            <div className="rounded-2xl overflow-hidden md:flex-1">
               <Image
                 src="/images/IMG_3662.webp"
                 alt="bonus adira bfi wom finance"
@@ -199,7 +222,7 @@ export default function Home() {
                 className="w-full h-auto block"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden">
+            <div className="rounded-2xl overflow-hidden md:flex-1">
               <Image
                 src="/images/IMG_3685.webp"
                 alt="bonus adira bfi wom finance"
@@ -219,11 +242,11 @@ export default function Home() {
           <SectionHeading>Cara Dapat Bonus</SectionHeading>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex flex-wrap gap-2 mb-5 md:mb-7">
             {bonusProducts.map((item) => (
               <span
                 key={item}
-                className="inline-flex items-center gap-1.5 px-3! py-1.5! bg-[#fdf0f0] text-[#7a0000] text-[12px] font-semibold rounded-full"
+                className="inline-flex items-center gap-1.5 px-3! py-1.5! bg-[#fdf0f0] text-[#7a0000] text-[12px] md:text-[13px] font-semibold rounded-full"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#9a0000]" />
                 {item}
@@ -232,13 +255,13 @@ export default function Home() {
           </div>
 
           {/* Steps */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4">
             {bonusSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4! bg-gray-50 rounded-2xl border border-gray-100">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-[#9a0000] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100">
+                <span className="shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#9a0000] text-white text-[11px] md:text-[12px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
-                <p className="text-[#646464] text-[13px] leading-relaxed">{step}</p>
+                <p className="text-[#646464] text-[13px] md:text-[14px] leading-relaxed">{step}</p>
               </div>
             ))}
           </div>
@@ -253,18 +276,18 @@ export default function Home() {
             alt="Proses Gadai BPKB"
             width={430}
             height={280}
-            className="w-full h-auto block rounded-2xl mb-4!"
+            className="w-full h-auto block rounded-2xl mb-4! md:mb-8! md:max-w-xs md:mx-auto"
           />
           {/* <SectionLabel>Cara Kerja</SectionLabel> */}
           <SectionHeading>Proses Gadai BPKB</SectionHeading>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4">
             {prosesSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4! bg-gray-50 rounded-2xl border border-gray-100">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-[#9a0000] text-white text-[11px] font-bold flex items-center justify-center mt-0.5">
+              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100">
+                <span className="shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#9a0000] text-white text-[11px] md:text-[12px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
-                <p className="text-[#646464] text-[13px] leading-relaxed">{step}</p>
+                <p className="text-[#646464] text-[13px] md:text-[14px] leading-relaxed">{step}</p>
               </div>
             ))}
           </div>
@@ -277,12 +300,12 @@ export default function Home() {
           <SectionLabel>Kelengkapan</SectionLabel>
           <SectionHeading>Persyaratan Pengajuan</SectionHeading>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-5 md:items-start">
             {/* Profil Diri */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4! py-3! bg-[#fdf0f0]">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+              <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-[#fdf0f0]">
                 <span className="text-xl">👤</span>
-                <h3 className="text-[13px] font-extrabold text-gray-900">Profil Diri (Peminjam)</h3>
+                <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Profil Diri (Peminjam)</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratDiri.map((item, i) => (
@@ -297,10 +320,10 @@ export default function Home() {
             </div>
 
             {/* Profil Kendaraan */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4! py-3! bg-blue-50">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+              <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-blue-50">
                 <span className="text-xl">🚘</span>
-                <h3 className="text-[13px] font-extrabold text-gray-900">Profil Kendaraan</h3>
+                <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Profil Kendaraan</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratKendaraan.map((item, i) => (
@@ -315,10 +338,10 @@ export default function Home() {
             </div>
 
             {/* Dokumen */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden">
-              <div className="flex items-center gap-3 px-4! py-3! bg-orange-50">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+              <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-orange-50">
                 <span className="text-xl">📄</span>
-                <h3 className="text-[13px] font-extrabold text-gray-900">Dokumen</h3>
+                <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Dokumen</h3>
               </div>
               <ul className="divide-y divide-gray-50">
                 {syaratDokumen.map((item, i) => (
@@ -341,7 +364,7 @@ export default function Home() {
           <SectionLabel>Simulasi</SectionLabel>
           <SectionHeading>Contoh Skema Angsuran</SectionHeading>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:items-start">
             {/* BPKB Mobil */}
             <div className="rounded-2xl overflow-hidden border border-gray-100">
               <div className="flex items-center gap-3 px-4! py-3.5! bg-[#9a0000]">
@@ -392,29 +415,35 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ CTA — full bleed green ══ */}
-        <section className="bg-[#9a0000] px-5! py-10!">
-          <h2 className="text-[18px] font-extrabold text-white mb-1.5 leading-snug">
-            Siap Mengajukan Pinjaman?
-          </h2>
-          <p className="text-red-100 text-[13px] mb-6 leading-relaxed">
-            Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
-          </p>
-          <a
-            href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2.5 bg-white text-[#9a0000] font-extrabold text-[14px] py-3.5! rounded-full active:scale-95 transition-transform"
-          >
-            {WA_SVG}
-            Chat WhatsApp — 0812-1925-1995
-          </a>
+        {/* ══ CTA — full bleed red ══ */}
+        <section className="bg-[#9a0000] px-5! py-10! md:py-14!">
+          <div className="max-w-6xl mx-auto md:px-8! md:flex md:items-center md:justify-between md:gap-10">
+            <div className="md:max-w-lg">
+              <h2 className="text-[18px] md:text-[26px] font-extrabold text-white mb-1.5 md:mb-2 leading-snug">
+                Siap Mengajukan Pinjaman?
+              </h2>
+              <p className="text-red-100 text-[13px] md:text-[15px] mb-6 md:mb-0 leading-relaxed">
+                Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
+              </p>
+            </div>
+            <a
+              href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full md:w-auto md:shrink-0 flex items-center justify-center gap-2.5 bg-white text-[#9a0000] font-extrabold text-[14px] py-3.5! px-8! rounded-full hover:bg-gray-100 active:scale-95 transition-transform"
+            >
+              {WA_SVG}
+              Chat WhatsApp — 0812-1925-1995
+            </a>
+          </div>
         </section>
 
       </main>
 
       {/* ══ FOOTER ══ */}
-      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-1!0!">
+      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-1!0! md:px-8! md:pt-14!">
+        <div className="max-w-6xl mx-auto md:flex md:justify-between md:gap-12">
+        <div className="md:max-w-sm">
         <Link href="/">
           <Image
             src="/images/Neozava.png"
@@ -441,7 +470,7 @@ export default function Home() {
           WA 0812-1925-1995
         </a>
 
-        <div className="flex gap-5 mb-6">
+        <div className="flex gap-5 mb-6 md:mb-0">
           {[
             { label: "Facebook",  href: "https://www.facebook.com/neozava" },
             { label: "Instagram", href: "https://www.instagram.com/neozava" },
@@ -458,8 +487,9 @@ export default function Home() {
             </a>
           ))}
         </div>
+        </div>
 
-        <div className="border-t border-gray-100 pt-4! flex flex-col gap-1.5">
+        <div className="border-t border-gray-100 pt-4! md:border-t-0 md:pt-0! flex flex-col gap-1.5 md:max-w-xs md:items-start">
           <p className="text-[11px] text-gray-400 italic leading-relaxed">
             Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan
           </p>
@@ -468,6 +498,7 @@ export default function Home() {
             <Link href="/" className="hover:text-[#9a0000] transition-colors">Beranda</Link>
             <span>© Neozava 2026</span>
           </div>
+        </div>
         </div>
       </footer>
 

@@ -42,3 +42,13 @@ body {
   flex-direction: column;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
 }
+
+/* Above phone width, drop the phone-mockup constraint so the desktop
+   layout (md: classes throughout the page components) has the full
+   viewport to work with instead of being capped at 430px. */
+@media (min-width: 768px) {
+  #mobile-shell {
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
