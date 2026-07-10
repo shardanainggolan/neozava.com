@@ -152,36 +152,24 @@ export default function Home() {
 
       <main className="flex-1 flex flex-col px-3! md:px-0">
 
-        {/* ══ HERO ══ */}
+        {/* ══ HERO — text only ══ */}
         <section className="bg-white">
-          <div className="max-w-6xl mx-auto md:px-8! md:py-14! md:flex md:items-center md:gap-12">
-            <div className="md:flex-1 md:max-w-md">
-              <h1 className="hidden md:block text-[32px] leading-[1.15] font-extrabold text-gray-900 mb-4">
-                Pinjam Uang dan e-commerce otomotif
-              </h1>
-              <p className="hidden md:block text-[15px] text-[#646464] leading-relaxed mb-7">
-                Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
-              </p>
-              <a
-                href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-2.5 bg-[#9a0000] text-white font-extrabold text-[14px] px-6! py-3.5! rounded-full hover:bg-[#7a0000] transition-colors"
-              >
-                {WA_SVG}
-                Chat WhatsApp — 0812-1925-1995
-              </a>
-            </div>
-            <div className="md:flex-1 md:max-w-sm md:mx-auto">
-              <Image
-                src="/images/detail-cabang-adira.jpeg"
-                alt="Pinjam Uang dan e-commerce otomotif"
-                width={430}
-                height={280}
-                className="w-full h-auto block md:rounded-3xl"
-                priority
-              />
-            </div>
+          <div className="max-w-6xl mx-auto px-1! py-10! md:px-8! md:py-20! text-center">
+            <h1 className="text-[26px] md:text-[40px] leading-[1.15] font-extrabold text-gray-900 mb-3! md:mb-5! md:max-w-2xl md:mx-auto">
+              Pinjam Uang dan e-commerce otomotif
+            </h1>
+            <p className="text-[14px] md:text-[17px] text-[#646464] leading-relaxed mb-6! md:mb-9! md:max-w-xl md:mx-auto">
+              Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
+            </p>
+            <a
+              href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-[#9a0000] text-white font-extrabold text-[14px] md:text-[15px] px-6! py-3.5! md:px-8! md:py-4! rounded-full hover:bg-[#7a0000] transition-colors"
+            >
+              {WA_SVG}
+              Chat WhatsApp — 0812-1925-1995
+            </a>
           </div>
         </section>
 
