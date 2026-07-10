@@ -28,14 +28,13 @@ body {
   color: #646464;
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
-  display: flex;
-  justify-content: center;
 }
 
 #mobile-shell {
   position: relative;
   width: 100%;
   max-width: 430px;
+  margin: 0 auto;
   min-height: 100dvh;
   background: #f6f6f6;
   display: flex;
