@@ -222,11 +222,11 @@ export default function Home() {
               🛡️ Berizin &amp; Diawasi OJK
             </span>
 
-            <h1 className="text-[27px] md:text-[44px] leading-[1.15] font-extrabold text-gray-900 mb-3! md:mb-5! md:max-w-2xl md:mx-auto tracking-tight">
-              Pinjam Uang dan e-commerce otomotif
+            <h1 className="text-[26px] md:text-[42px] leading-[1.2] font-extrabold text-gray-900 mb-3! md:mb-5! md:max-w-3xl md:mx-auto tracking-tight">
+              Gadai BPKB, Take Over &amp; Kredit Bekas — Motor, Mobil Pribadi, Truk &amp; Pick Up
             </h1>
-            <p className="text-[14px] md:text-[18px] text-[#646464] leading-relaxed mb-7! md:mb-10! md:max-w-xl md:mx-auto">
-              Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
+            <p className="text-[14px] md:text-[18px] text-[#646464] leading-relaxed mb-7! md:mb-10! md:max-w-2xl md:mx-auto">
+              Pembiayaan gadai BPKB dan kredit kendaraan bekas — motor, mobil pribadi, truk, dan pick up. Proses cepat, konsultasi gratis via WhatsApp.
             </p>
             <a
               href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"

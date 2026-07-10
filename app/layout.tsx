@@ -12,9 +12,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const SITE_NAME = "Neozava";
 const SITE_URL = "https://neozava.com";
-const TITLE = "Neozava: Pinjam Uang dan e-commerce otomotif";
+const TITLE = "Gadai BPKB Motor, Mobil, Truk & Pick Up - Neozava";
 const DESCRIPTION =
-  "Gadai BPKB Mobil, Gadai BPKB Motor, Take Over, Kredit Bekas, Top Up Adira. Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan.";
+  "Gadai BPKB motor, mobil, truk, dan pick up. Take over BPKB serta pembiayaan kredit bekas motor dan mobil. Proses cepat, konsultasi gratis via WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
