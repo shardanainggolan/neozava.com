@@ -142,6 +142,58 @@ function Divider() {
   return <div className="h-3 bg-[#f0f0f0]" />;
 }
 
+/* Interactive-feeling simulation card: pulls the monthly installment out
+   as a hero stat, everything else becomes a scannable stat grid instead
+   of a plain HTML table. Same data, same numbers — just easier to read
+   at a glance, especially on mobile. */
+function SimulationCard({
+  icon, title, headerBg, data,
+}: {
+  icon: string;
+  title: string;
+  headerBg: string;
+  data: [string, string][];
+}) {
+  const heroStat = data.find(([label]) => label === "Angsuran/bulan");
+  const restStats = data.filter(([label]) => label !== "Angsuran/bulan");
+
+  return (
+    <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 bg-white shadow-[0_4px_20px_rgba(15,23,42,0.04)] md:hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] md:hover:-translate-y-1 transition-all duration-200">
+      <div className={`flex items-center gap-3 px-5! py-4! md:py-5! ${headerBg}`}>
+        <span className="text-xl md:text-2xl">{icon}</span>
+        <h3 className="text-white font-extrabold text-[15px] md:text-[17px]">{title}</h3>
+      </div>
+
+      {heroStat && (
+        <div className="px-5! py-5! md:px-6! md:py-6! border-b border-gray-50">
+          <p className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.08em] text-[#9a0000] mb-1!">
+            Angsuran mulai dari
+          </p>
+          <p className="text-[26px] md:text-[32px] font-extrabold text-gray-900 leading-tight">
+            {heroStat[1]}
+            <span className="text-[13px] md:text-[14px] font-semibold text-[#646464]"> /bulan</span>
+          </p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 gap-2.5 md:gap-3 p-5! md:p-6!">
+        {restStats.map(([label, value]) => (
+          <div key={label} className="bg-gray-50 rounded-xl px-3.5! py-3! md:px-4! md:py-3.5!">
+            <p className="text-[10.5px] md:text-[11px] text-[#646464] font-medium leading-tight mb-1!">{label}</p>
+            <p className="text-[12.5px] md:text-[13.5px] text-gray-900 font-bold leading-snug">{value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="px-5! py-3! md:px-6! bg-amber-50 border-t border-amber-100">
+        <p className="text-[11px] text-amber-700 italic">
+          Skema angsuran hanya bersifat simulasi dan bukan persetujuan pinjaman dana.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 /* ─── PAGE ──────────────────────────────────────────── */
 
 export default function Home() {
@@ -152,24 +204,59 @@ export default function Home() {
 
       <main className="flex-1 flex flex-col px-3! md:px-0">
 
-        {/* ══ HERO — text only ══ */}
-        <section className="bg-white">
-          <div className="max-w-6xl mx-auto px-1! py-10! md:px-8! md:py-20! text-center">
-            <h1 className="text-[26px] md:text-[40px] leading-[1.15] font-extrabold text-gray-900 mb-3! md:mb-5! md:max-w-2xl md:mx-auto">
+        {/* ══ HERO — text only, soft glow backdrop ══ */}
+        <section className="relative bg-white overflow-hidden">
+          {/* Soft radial glow — same brand red at low opacity, no new color */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full bg-[#9a0000]/[0.06] blur-3xl"
+          />
+
+          <div className="relative max-w-6xl mx-auto px-1! py-12! md:px-8! md:py-24! text-center">
+            <span className="inline-flex items-center gap-1.5 bg-[#fdf0f0] text-[#7a0000] text-[11px] md:text-[12px] font-bold uppercase tracking-[0.1em] px-4! py-2! rounded-full mb-5! md:mb-7!">
+              🛡️ Berizin &amp; Diawasi OJK
+            </span>
+
+            <h1 className="text-[27px] md:text-[44px] leading-[1.15] font-extrabold text-gray-900 mb-3! md:mb-5! md:max-w-2xl md:mx-auto tracking-tight">
               Pinjam Uang dan e-commerce otomotif
             </h1>
-            <p className="text-[14px] md:text-[17px] text-[#646464] leading-relaxed mb-6! md:mb-9! md:max-w-xl md:mx-auto">
+            <p className="text-[14px] md:text-[18px] text-[#646464] leading-relaxed mb-7! md:mb-10! md:max-w-xl md:mx-auto">
               Konsultasi gratis via WhatsApp — proses cepat, pencairan langsung ke rekening.
             </p>
             <a
               href="https://wa.me/6281219251995?text=Hello%20admin%20neozava.com%20mau%20tanya%3F"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-[#9a0000] text-white font-extrabold text-[14px] md:text-[15px] px-6! py-3.5! md:px-8! md:py-4! rounded-full hover:bg-[#7a0000] transition-colors"
+              className="inline-flex items-center gap-2.5 bg-[#9a0000] text-white font-extrabold text-[14px] md:text-[15px] px-6! py-3.5! md:px-8! md:py-4! rounded-full shadow-[0_8px_24px_rgba(154,0,0,0.25)] hover:bg-[#7a0000] hover:shadow-[0_10px_30px_rgba(154,0,0,0.35)] hover:scale-[1.03] active:scale-95 transition-all duration-200"
             >
               {WA_SVG}
               Chat WhatsApp — 0812-1925-1995
             </a>
+          </div>
+        </section>
+
+        {/* ══ TRUST STRIP ══ */}
+        <section className="bg-white pb-10! md:pb-16!">
+          <div className="max-w-6xl mx-auto px-1! md:px-8!">
+            <div className="rounded-2xl md:rounded-3xl border border-gray-100 bg-gray-50/60 px-5! py-6! md:px-10! md:py-8! flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-8">
+              <p className="text-[12.5px] md:text-[13.5px] text-[#646464] leading-relaxed md:max-w-xs">
+                <span className="block font-extrabold text-gray-900 text-[13.5px] md:text-[14.5px] mb-1!">
+                  Berizin &amp; Diawasi OJK
+                </span>
+                Adira, BFI, dan WOM Finance berizin dan diawasi oleh Otoritas Jasa Keuangan.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 md:gap-3">
+                {["Adira Finance", "BFI Finance", "WOM Finance"].map((partner) => (
+                  <span
+                    key={partner}
+                    className="bg-white border border-gray-100 shadow-sm text-[12px] md:text-[13px] font-bold text-gray-700 px-4! py-2.5! rounded-xl"
+                  >
+                    {partner}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -220,7 +307,7 @@ export default function Home() {
           {/* Steps */}
           <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4">
             {bonusSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100">
+              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100 shadow-[0_2px_8px_rgba(15,23,42,0.03)]">
                 <span className="shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#9a0000] text-white text-[11px] md:text-[12px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
@@ -239,7 +326,7 @@ export default function Home() {
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4">
             {prosesSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100">
+              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100 shadow-[0_2px_8px_rgba(15,23,42,0.03)]">
                 <span className="shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#9a0000] text-white text-[11px] md:text-[12px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
@@ -258,7 +345,7 @@ export default function Home() {
 
           <div className="flex flex-col md:grid md:grid-cols-3 gap-5 md:items-start">
             {/* Profil Diri */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full shadow-[0_2px_8px_rgba(15,23,42,0.03)] md:hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] md:hover:-translate-y-0.5 transition-all duration-200">
               <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-[#fdf0f0]">
                 <span className="text-xl">👤</span>
                 <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Profil Diri (Peminjam)</h3>
@@ -276,7 +363,7 @@ export default function Home() {
             </div>
 
             {/* Profil Kendaraan */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full shadow-[0_2px_8px_rgba(15,23,42,0.03)] md:hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] md:hover:-translate-y-0.5 transition-all duration-200">
               <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-blue-50">
                 <span className="text-xl">🚘</span>
                 <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Profil Kendaraan</h3>
@@ -294,7 +381,7 @@ export default function Home() {
             </div>
 
             {/* Dokumen */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full">
+            <div className="rounded-2xl border border-gray-100 overflow-hidden md:h-full shadow-[0_2px_8px_rgba(15,23,42,0.03)] md:hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)] md:hover:-translate-y-0.5 transition-all duration-200">
               <div className="flex items-center gap-3 px-4! py-3! md:py-4! bg-orange-50">
                 <span className="text-xl">📄</span>
                 <h3 className="text-[13px] md:text-[14px] font-extrabold text-gray-900">Dokumen</h3>
@@ -320,52 +407,9 @@ export default function Home() {
           <SectionLabel>Simulasi</SectionLabel>
           <SectionHeading>Contoh Skema Angsuran</SectionHeading>
 
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:items-start">
-            {/* BPKB Mobil */}
-            <div className="rounded-2xl overflow-hidden border border-gray-100">
-              <div className="flex items-center gap-3 px-4! py-3.5! bg-[#9a0000]">
-                <span className="text-xl">🚗</span>
-                <h3 className="text-white font-extrabold text-[15px]">BPKB Mobil</h3>
-              </div>
-              <table className="w-full text-[13px]">
-                <tbody>
-                  {mobilTable.map(([label, value], i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4! py-3! text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
-                      <td className="px-4! py-3! text-gray-900 font-bold border-b border-gray-50">{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="px-4! py-3! bg-amber-50 border-t border-amber-100">
-                <p className="text-[11px] text-amber-700 italic">
-                  Skema angsuran hanya bersifat simulasi dan bukan persetujuan pinjaman dana.
-                </p>
-              </div>
-            </div>
-
-            {/* BPKB Motor */}
-            <div className="rounded-2xl overflow-hidden border border-gray-100">
-              <div className="flex items-center gap-3 px-4! py-3.5! bg-[#7a0000]">
-                <span className="text-xl">🏍️</span>
-                <h3 className="text-white font-extrabold text-[15px]">BPKB Motor</h3>
-              </div>
-              <table className="w-full text-[13px]">
-                <tbody>
-                  {motorTable.map(([label, value], i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4! py-3! text-[#646464] font-medium w-[48%] border-b border-gray-50">{label}</td>
-                      <td className="px-4! py-3! text-gray-900 font-bold border-b border-gray-50">{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="px-4! py-3! bg-amber-50 border-t border-amber-100">
-                <p className="text-[11px] text-amber-700 italic">
-                  Skema angsuran hanya bersifat simulasi dan bukan persetujuan pinjaman dana.
-                </p>
-              </div>
-            </div>
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 md:items-start">
+            <SimulationCard icon="🚗" title="BPKB Mobil" headerBg="bg-[#9a0000]" data={mobilTable as [string, string][]} />
+            <SimulationCard icon="🏍️" title="BPKB Motor" headerBg="bg-[#7a0000]" data={motorTable as [string, string][]} />
           </div>
         </Section>
 
