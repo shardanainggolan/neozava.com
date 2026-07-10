@@ -177,8 +177,13 @@ function SimulationCard({
       )}
 
       <div className="grid grid-cols-2 gap-2.5 md:gap-3 p-5! md:p-6!">
-        {restStats.map(([label, value]) => (
-          <div key={label} className="bg-gray-50 rounded-xl px-3.5! py-3! md:px-4! md:py-3.5!">
+        {restStats.map(([label, value], i) => (
+          <div
+            key={label}
+            className={`bg-gray-50 rounded-xl px-3.5! py-3! md:px-4! md:py-3.5! ${
+              i === restStats.length - 1 && restStats.length % 2 === 1 ? "col-span-2" : ""
+            }`}
+          >
             <p className="text-[10.5px] md:text-[11px] text-[#646464] font-medium leading-tight mb-1!">{label}</p>
             <p className="text-[12.5px] md:text-[13.5px] text-gray-900 font-bold leading-snug">{value}</p>
           </div>
@@ -266,12 +271,12 @@ export default function Home() {
         <Section bg="bg-white">
           <SectionLabel>Layanan Kami</SectionLabel>
           <SectionHeading>Solusi Keuangan Kendaraan</SectionHeading>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
+          <div className="flex flex-wrap justify-center md:grid md:grid-cols-5 gap-3 md:gap-4">
             {products.map((p, i) => (
               <Link
                 key={i}
                 href={p.href}
-                className="flex flex-col items-center gap-2 md:gap-3 py-4! px-2! md:py-6! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 md:hover:-translate-y-1 md:hover:shadow-md transition-transform"
+                className="w-[30%] md:w-auto flex flex-col items-center gap-2 md:gap-3 py-4! px-2! md:py-6! bg-gray-50 rounded-2xl border border-gray-100 active:scale-95 md:hover:-translate-y-1 md:hover:shadow-md transition-transform"
               >
                 <span className="w-11 h-11 md:w-14 md:h-14 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl md:text-3xl">
                   {p.icon}
@@ -326,7 +331,12 @@ export default function Home() {
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4">
             {prosesSteps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100 shadow-[0_2px_8px_rgba(15,23,42,0.03)]">
+              <div
+                key={i}
+                className={`flex gap-3 items-start p-4! md:p-5! bg-gray-50 rounded-2xl border border-gray-100 shadow-[0_2px_8px_rgba(15,23,42,0.03)] ${
+                  i === prosesSteps.length - 1 && prosesSteps.length % 2 === 1 ? "md:col-span-2" : ""
+                }`}
+              >
                 <span className="shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#9a0000] text-white text-[11px] md:text-[12px] font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
