@@ -207,7 +207,7 @@ export default function Home() {
 
       <Navbar />
 
-      <main className="flex-1 flex flex-col px-3! md:px-0">
+      <main className="flex-1 flex flex-col px-3 md:px-0">
 
         {/* ══ HERO — text only, soft glow backdrop ══ */}
         <section className="relative bg-white overflow-hidden">
@@ -456,7 +456,7 @@ export default function Home() {
           <div className="md:grid md:grid-cols-[2fr_1fr_1fr] md:gap-12">
 
             {/* Brand */}
-            <div className="mb-8! md:mb-0">
+            <div className="mb-8 md:mb-0">
               <Link href="/">
                 <Image
                   src="/images/Neozava.png"
@@ -504,7 +504,7 @@ export default function Home() {
 
             {/* Sitemap columns — same links as the navbar, grouped */}
             {navGroups.map((group) => (
-              <div key={group.label} className="mb-7! md:mb-0">
+              <div key={group.label} className="mb-7 md:mb-0">
                 <SectionLabel>{group.label}</SectionLabel>
                 <ul className="flex flex-col gap-2.5 mt-3! md:mt-4!">
                   {group.links.map((link) => (
