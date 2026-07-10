@@ -210,32 +210,6 @@ export default function Home() {
 
         <Divider />
 
-        {/* ══ BONUS IMAGES — full bleed ══ */}
-        <Section bg="bg-[#f6f6f6]">
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5">
-            <div className="rounded-2xl overflow-hidden md:flex-1">
-              <Image
-                src="/images/IMG_3662.webp"
-                alt="bonus adira bfi wom finance"
-                width={430}
-                height={290}
-                className="w-full h-auto block"
-              />
-            </div>
-            <div className="rounded-2xl overflow-hidden md:flex-1">
-              <Image
-                src="/images/IMG_3685.webp"
-                alt="bonus adira bfi wom finance"
-                width={430}
-                height={290}
-                className="w-full h-auto block"
-              />
-            </div>
-          </div>
-        </Section>
-
-        <Divider />
-
         {/* ══ BONUS PROGRAM ══ */}
         <Section bg="bg-white">
           {/* <SectionLabel>Program Agen</SectionLabel> */}
@@ -271,13 +245,6 @@ export default function Home() {
 
         {/* ══ PROSES GADAI BPKB ══ */}
         <Section bg="bg-white">
-          <Image
-            src="/images/proses-gadai.webp"
-            alt="Proses Gadai BPKB"
-            width={430}
-            height={280}
-            className="w-full h-auto block rounded-2xl mb-4! md:mb-8! md:max-w-xs md:mx-auto"
-          />
           {/* <SectionLabel>Cara Kerja</SectionLabel> */}
           <SectionHeading>Proses Gadai BPKB</SectionHeading>
 
