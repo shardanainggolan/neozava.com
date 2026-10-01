@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../../Navbar";
 import type { Branch, BranchApiResponse } from "../../cabang-adira/types";
 import { API_BASE } from "@/lib/config";
+import SyaratPinjamanBPKB from "./SyaratPinjamanBPKB";
 
 const COLOR = "#9a0000";
 const COLOR_BG = "#fdf0f0";
@@ -37,9 +38,65 @@ function phones(b: Branch) {
   return [b.telp1, b.telp2, b.telp3].filter(Boolean);
 }
 
+function waText(product: string, branchName: string): string {
+  return `Halo admin Neozava, saya ingin tanya simulasi ${product}, cabang terdekat saya adalah ${branchName}.`;
+}
+
 function faxes(b: Branch) {
   return [b.fax1, b.fax2, b.fax3].filter(Boolean);
 }
+
+const MOBIL_LISTRIK_AREAS = ["JAKARTA", "BOGOR", "TANGERANG", "BEKASI", "DEPOK"];
+
+const SERTIFIKAT_RUMAH_AREAS = [
+  "JAKARTA", "BOGOR", "TANGERANG", "BEKASI", "DEPOK",
+  "SIDOARJO", "SURABAYA", "MALANG", "MEDAN", "DENPASAR", "BALIKPAPAN",
+];
+
+function isMobilListrikArea(b: Branch): boolean {
+  const district = b.region.district.district.toUpperCase();
+  return MOBIL_LISTRIK_AREAS.some((area) => district.includes(area));
+}
+
+function isSertifikatRumahArea(b: Branch): boolean {
+  const district = b.region.district.district.toUpperCase();
+  return SERTIFIKAT_RUMAH_AREAS.some((area) => district.includes(area));
+}
+
+const PROSES_STEPS = [
+  {
+    icon: "💬",
+    text: (
+      <>
+        Chat WhatsApp admin, akan di-info <strong className="text-gray-900">maksimal pencairan, cicilan per bulan,</strong> dan tenor.
+      </>
+    ),
+  },
+  {
+    icon: "📋",
+    text: (
+      <>
+        Jika setuju dengan penawaran, lanjut proses <strong className="text-gray-900">cek dokumen persyaratan</strong> dan kemampuan bayar.
+      </>
+    ),
+  },
+  {
+    icon: "🚚",
+    text: (
+      <>
+        Jika pengajuan disetujui, penyerahan BPKB ke kantor cabang terdekat atau bisa <strong className="text-gray-900">dijemput surveyor</strong>.
+      </>
+    ),
+  },
+  {
+    icon: "🏦",
+    text: (
+      <>
+        Pencairan langsung ke <strong className="text-gray-900">nomor rekening pemohon</strong> oleh leasing.
+      </>
+    ),
+  },
+];
 
 /* ─── sub-components ────────────────────────────────── */
 
@@ -51,17 +108,17 @@ function InfoCard({
   lines: string[];
 }) {
   return (
-    <div className="flex-1 bg-white rounded-2xl border border-gray-100 p-4! text-center flex flex-col items-center gap-2!">
+    <div className="flex-1 md:flex-none bg-white rounded-2xl border border-gray-100 p-4! md:p-0! text-center md:text-left flex flex-col items-center md:flex-row md:items-start gap-2! md:gap-3.5!">
       <div
-        className="w-12! h-12! rounded-2xl flex items-center justify-center"
+        className="w-12! h-12! shrink-0 rounded-2xl flex items-center justify-center"
         style={{ background: COLOR_BG, color: COLOR }}
       >
         {icon}
       </div>
-      <h2 className="text-[11px] font-extrabold uppercase tracking-wider text-gray-900">
-        {title}
-      </h2>
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-0.5 md:pt-1!">
+        <h2 className="text-[11px] font-extrabold uppercase tracking-wider text-gray-900">
+          {title}
+        </h2>
         {lines.length > 0 ? lines.map((l, i) => (
           <p key={i} className="text-[12px] text-[#646464] leading-snug">{l}</p>
         )) : (
@@ -85,7 +142,7 @@ function WaButton({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-full flex items-center justify-center gap-2! py-3! rounded-full text-white text-[13px] font-bold active:scale-95 transition-transform"
+      className="w-full flex items-center justify-center gap-2! py-3! md:py-3.5! rounded-full text-white text-[13px] md:text-[14px] font-bold active:scale-95 transition-transform"
       style={{ background: COLOR }}
     >
       <svg className="w-4! h-4! shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -132,168 +189,169 @@ export default async function CabangBfiDetailPage({
   const province = toTitle(branch.region.province.province);
   const district  = toTitle(branch.region.district.district);
   const subDistrict = toTitle(branch.region.subDistrict.subDistrict);
-  const pageTitle = `${branch.name} 081219251995 | Gadai BPKB Dapat Cash Back Chat Whatsapp`;
+  const pageTitle = `${branch.name} 081219251995`;
+  const showMobilListrik = isMobilListrikArea(branch);
+  const showSertifikatRumah = isSertifikatRumahArea(branch);
+
+  const CARD = "md:rounded-3xl md:border md:border-gray-100 md:shadow-[0_2px_24px_rgba(0,0,0,0.04)]";
 
   return (
     <div className="flex flex-col flex-1">
       <Navbar />
 
       {/* ── Red header ── */}
-      <div className="bg-[#9a0000] px-5! pt-5! pb-5!">
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-1.5 text-[11px] text-red-200 mb-3! flex-wrap">
-          <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
-          <span>/</span>
-          <Link href="/cabang-bfi" className="hover:text-white transition-colors">Cabang</Link>
-          <span>/</span>
-          <span className="text-white font-medium truncate max-w-40">{branch.name}</span>
+      <div className="bg-[#9a0000] px-5! pt-5! pb-5! md:pt-10! md:pb-10!">
+        <div className="md:max-w-6xl md:mx-auto md:px-8!">
+          {/* Breadcrumbs */}
+          <div className="flex items-center gap-1.5 text-[11px] md:text-[13px] text-red-200 mb-3! md:mb-4! flex-wrap">
+            <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
+            <span>/</span>
+            <Link href="/cabang-bfi" className="hover:text-white transition-colors">Cabang</Link>
+            <span>/</span>
+            <span className="text-white font-medium truncate max-w-40 md:max-w-none">{branch.name}</span>
+          </div>
+          {/* Title */}
+          <h1 className="text-[17px] md:text-[30px] font-extrabold text-white leading-snug md:max-w-2xl">
+            {pageTitle}
+          </h1>
         </div>
-        {/* Title */}
-        <h1 className="text-[17px] font-extrabold text-white leading-snug">
-          {pageTitle}
-        </h1>
-        <p className="text-[12px] text-red-200 mt-1! leading-relaxed">
-          {branch.description}
-        </p>
       </div>
 
-      <main className="flex-1 flex flex-col bg-[#f6f6f6]">
+      <main className="flex-1 flex flex-col bg-[#f6f6f6] md:bg-[#f3f3f5]">
+        <div className="md:max-w-6xl md:mx-auto md:w-full md:px-8! md:py-10!">
+          <div className="md:grid md:grid-cols-[340px_1fr] md:gap-8 md:items-start">
 
-        {/* ── Maps ── */}
-        {mapSrc && mapSrc.includes("google.com/maps") && (
-          <div className="bg-white">
-            <iframe
-              src={mapSrc}
-              width="100%"
-              height="240"
-              style={{ border: 0, display: "block" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title={branch.name}
-            />
-          </div>
-        )}
+            {/* ── Sidebar: Map + Info cards ── */}
+            <div className={`bg-white md:overflow-hidden md:sticky md:top-24 ${CARD}`}>
+              {/* Maps */}
+              {mapSrc && mapSrc.includes("google.com/maps") && (
+                <div className="bg-white">
+                  <iframe
+                    src={mapSrc}
+                    width="100%"
+                    height="240"
+                    style={{ border: 0, display: "block" }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={branch.name}
+                  />
+                </div>
+              )}
 
-        {/* ── Info cards: Alamat / Telepon / Fax ── */}
-        <div className="px-5! py-5! flex gap-3!">
-          <InfoCard
-            icon={
-              <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            }
-            title="Alamat"
-            lines={[
-              branch.address,
-              `${subDistrict}, ${district}, ${province}`,
-            ]}
-          />
-          <InfoCard
-            icon={
-              <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-              </svg>
-            }
-            title="Telepon"
-            lines={telList}
-          />
-          <InfoCard
-            icon={
-              <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-            }
-            title="Fax"
-            lines={faxList}
-          />
-        </div>
-
-        <div className="h-2! bg-[#f0f0f0]" />
-
-        {/* ── Ajukan Produk header ── */}
-        <div className="bg-white px-5! py-6! text-center">
-          <h2 className="text-[17px] font-extrabold text-gray-900 mb-1! leading-snug">
-            Ajukan Produk di {branch.name}
-          </h2>
-          <p className="text-[13px] text-[#646464]">
-            Ajukan Produk yang Anda inginkan sekarang juga
-          </p>
-        </div>
-
-        <div className="h-2! bg-[#f0f0f0]" />
-
-        {/* ── Banner images ── */}
-        <div className="bg-white">
-          <img
-            src="/images/detail-cabang-bfi.webp"
-            alt="Detail Cabang BFI Finance"
-            className="w-full h-auto block"
-          />
-          <div className="h-2! bg-[#f0f0f0]" />
-          <img
-            src="/images/proses-gadai-bpkb.webp"
-            alt="Proses Gadai BPKB"
-            className="w-full h-auto block"
-          />
-        </div>
-
-        <div className="h-2! bg-[#f0f0f0]" />
-
-        {/* ── Product cards ── */}
-        <div className="bg-white px-5! py-6! flex flex-col gap-4!">
-          {/* Gadai BPKB */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-4! flex flex-col items-center text-center gap-3!">
-            <span className="text-4xl">🚗</span>
-            <div>
-              <h2 className="text-[15px] font-extrabold text-gray-900 mb-1!">Pinjaman Dana Gadai BPKB</h2>
-              <p className="text-[12px] text-[#646464] leading-relaxed">
-                Ajukan pinjaman mulai dari 3 juta rupiah dengan BPKB Motor atau pinjaman dana
-                mulai dari 20 juta rupiah dengan BPKB Mobil.
-              </p>
+              {/* Info cards: Alamat / Telepon / Fax */}
+              <div className="px-5! py-5! flex gap-3! md:flex-col md:gap-5! md:p-6!">
+                <InfoCard
+                  icon={
+                    <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  }
+                  title="Alamat"
+                  lines={[
+                    branch.address,
+                    `${subDistrict}, ${district}, ${province}`,
+                  ]}
+                />
+                <InfoCard
+                  icon={
+                    <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                  }
+                  title="Telepon"
+                  lines={telList}
+                />
+                <InfoCard
+                  icon={
+                    <svg className="w-5! h-5!" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                  }
+                  title="Fax"
+                  lines={faxList}
+                />
+              </div>
             </div>
-            <WaButton
-              wa={WA_DEFAULT}
-              text="Halo saya ingin mengajukan gadai BPKB di BFI Finance"
-              label="Ajukan Sekarang"
-            />
-          </div>
 
-          {/* Take Over BPKB */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-4! flex flex-col items-center text-center gap-3!">
-            <span className="text-4xl">🔄</span>
-            <div>
-              <h2 className="text-[15px] font-extrabold text-gray-900 mb-1!">Take Over BPKB</h2>
-              <p className="text-[12px] text-[#646464] leading-relaxed">
-                Pindahkan pinjaman BPKB Anda ke BFI Finance dengan bunga lebih ringan
-                dan proses yang mudah dan cepat.
-              </p>
+            {/* ── Main column ── */}
+            <div className="md:flex md:flex-col md:gap-6!">
+
+              {/* Ajukan Produk header */}
+              <div className={`bg-white px-5! py-6! md:py-8! text-center ${CARD}`}>
+                <h2 className="text-[17px] md:text-[22px] font-extrabold text-gray-900 mb-1! leading-snug">
+                  Ajukan Produk di {branch.name}
+                </h2>
+                <p className="text-[13px] md:text-[14px] text-[#646464]">
+                  Ajukan Produk yang Anda inginkan sekarang juga
+                </p>
+              </div>
+
+              <div className="h-2! bg-[#f0f0f0] md:hidden" />
+
+              {/* Proses Gadai BPKB */}
+              <div className={`bg-white px-5! py-6! md:p-8! ${CARD}`}>
+                <div className="text-center mb-5! md:mb-7!">
+                  <h2 className="text-[17px] md:text-[21px] font-extrabold text-gray-900 mb-1! leading-snug">
+                    Langkah-Langkah Gadai BPKB, Kredit Bekas &amp; Take Over BPKB
+                  </h2>
+                </div>
+
+                <div className="flex flex-col gap-3! mb-6! md:grid md:grid-cols-2 md:gap-4! md:mb-2!">
+                  {PROSES_STEPS.map((step, i) => (
+                    <div key={i} className="flex items-start gap-3!">
+                      <div
+                        className="shrink-0 w-7! h-7! rounded-full text-white flex items-center justify-center font-extrabold text-[12px]"
+                        style={{ background: COLOR }}
+                      >
+                        {i + 1}
+                      </div>
+                      <div className="flex-1 bg-gray-50 rounded-xl border border-gray-100 p-3! flex items-center gap-3!">
+                        <span className="text-xl shrink-0">{step.icon}</span>
+                        <p className="text-[12px] md:text-[13px] text-[#646464] leading-relaxed">{step.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="md:max-w-xs md:mt-6!">
+                  <WaButton
+                    wa={WA_DEFAULT}
+                    text={waText("pencairan, cicilan, dan tenor di BFI Finance", branch.name)}
+                    label="Tanya Simulasi Pencairan"
+                  />
+                </div>
+              </div>
+
+              <div className="h-2! bg-[#f0f0f0] md:hidden" />
+
+              {/* Syarat Pinjaman Jaminan BPKB */}
+              <SyaratPinjamanBPKB
+                branchName={branch.name}
+                showMobilListrik={showMobilListrik}
+                showSertifikatRumah={showSertifikatRumah}
+                cardClassName={CARD}
+              />
+
+              <div className="h-2! bg-[#f0f0f0] md:hidden" />
+
+              {/* Back button */}
+              <div className="bg-white px-5! py-5! md:bg-transparent md:p-0! md:flex md:justify-center">
+                <Link
+                  href="/cabang-bfi"
+                  className="w-full md:w-auto flex items-center justify-center gap-2! py-3! px-5! md:px-8! rounded-full border-2 border-[#9a0000] text-[#9a0000] text-[13px] font-bold active:scale-95 transition-colors md:hover:bg-[#9a0000] md:hover:text-white"
+                >
+                  <svg className="w-4! h-4!" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                  Kembali ke Daftar Cabang
+                </Link>
+              </div>
+
             </div>
-            <WaButton
-              wa={WA_DEFAULT}
-              text="Halo saya ingin mengajukan Take Over BPKB di BFI Finance"
-              label="Ajukan Sekarang"
-            />
           </div>
         </div>
-
-        <div className="h-2! bg-[#f0f0f0]" />
-
-        {/* ── Back button ── */}
-        <div className="bg-white px-5! py-5!">
-          <Link
-            href="/cabang-bfi"
-            className="w-full flex items-center justify-center gap-2! py-3! rounded-full border-2 text-[13px] font-bold active:scale-95 transition-transform"
-            style={{ borderColor: COLOR, color: COLOR }}
-          >
-            <svg className="w-4! h-4!" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/>
-            </svg>
-            Kembali ke Daftar Cabang
-          </Link>
-        </div>
-
       </main>
     </div>
   );
