@@ -14,6 +14,7 @@ export const navGroups = [
       { label: "Take Over", href: "/news/take-over-bpkb" },
       { label: "Kredit Bekas", href: "/news/kredit-motor-mobil-bekas" },
       { label: "Tabel Bonus", href: "/news/tabel-bonus" },
+      { label: "News", href: "/news" },
     ],
   },
   {
@@ -27,6 +28,6 @@ export const navGroups = [
 ];
 
 export const navSingleLinks = [
-  { label: "News", href: "/news" },
-  { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
+  { label: "Syarat", href: "/syarat-ketentuan" },
+  { label: "Kontak", href: "/#kontak" },
 ];

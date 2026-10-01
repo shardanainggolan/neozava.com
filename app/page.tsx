@@ -451,7 +451,7 @@ export default function Home() {
       </main>
 
       {/* ══ FOOTER ══ */}
-      <footer className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-6! md:px-8! md:pt-14! md:pb-8!">
+      <footer id="kontak" className="bg-white border-t border-gray-100 px-5! pt-9! mt-10! pb-6! md:px-8! md:pt-14! md:pb-8! scroll-mt-16 md:scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <div className="md:grid md:grid-cols-[2fr_1fr_1fr] md:gap-12">
 

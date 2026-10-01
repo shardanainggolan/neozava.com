@@ -21,6 +21,7 @@ export default function MapFacade({
   lng,
   label,
   height = 240,
+  fill = false,
   accent = "#9a0000",
 }: {
   mapSrc: string;
@@ -28,6 +29,11 @@ export default function MapFacade({
   lng: string;
   label: string;
   height?: number;
+  /** Fill the parent's height instead of a fixed pixel height — use when
+   * the parent already defines the height (e.g. a stretched grid cell).
+   * Falls back to `height` on mobile where the grid collapses and the
+   * parent no longer constrains height. */
+  fill?: boolean;
   accent?: string;
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -81,12 +87,12 @@ export default function MapFacade({
 
   if (loaded) {
     return (
-      <div className="bg-white">
+      <div className={`bg-white ${fill ? "h-full min-h-[240px] md:min-h-0" : ""}`}>
         <iframe
           src={mapSrc}
           width="100%"
           height={height}
-          style={{ border: 0, display: "block" }}
+          style={{ border: 0, display: "block", ...(fill ? { height: "100%" } : {}) }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -99,8 +105,8 @@ export default function MapFacade({
   return (
     <div
       ref={rootRef}
-      className="relative w-full bg-gray-100 flex flex-col items-center justify-center text-center gap-2! px-4!"
-      style={{ height }}
+      className={`relative w-full bg-gray-100 flex flex-col items-center justify-center text-center gap-2! px-4! ${fill ? "h-full min-h-[240px] md:min-h-0" : ""}`}
+      style={fill ? undefined : { height }}
     >
       <div
         className="w-11! h-11! rounded-2xl flex items-center justify-center animate-pulse"
