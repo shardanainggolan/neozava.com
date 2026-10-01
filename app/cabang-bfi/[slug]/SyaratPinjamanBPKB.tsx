@@ -434,7 +434,7 @@ export default function SyaratPinjamanBPKB({
                 key={row.label}
                 className={i > 0 ? "pt-2.5! mt-2.5! border-t border-gray-200" : ""}
               >
-                <p className="text-[10px] font-bold uppercase tracking-wide text-gray-400 mb-0.5!">
+                <p className="text-[10px] font-bold uppercase tracking-wide text-gray-500 mb-0.5!">
                   {row.label}
                 </p>
                 <p
@@ -473,7 +473,7 @@ export default function SyaratPinjamanBPKB({
           </div>
         )}
 
-        <p className="text-[10px] md:text-[11px] text-gray-400 italic leading-relaxed mb-4!">
+        <p className="text-[10px] md:text-[11px] text-gray-500 italic leading-relaxed mb-4!">
           * {active.skema.disclaimer}
         </p>
 

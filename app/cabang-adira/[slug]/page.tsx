@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navbar from "../../Navbar";
+import MapFacade from "../../MapFacade";
 import type { Branch, BranchApiResponse } from "../types";
 import { API_BASE } from "@/lib/config";
 
@@ -26,7 +27,11 @@ function toTitle(s: string): string {
 }
 
 function sanitiseGmaps(raw: string): string {
-  return raw.replace(/\\"/g, "").replace(/"/g, "").trim();
+  // The API sometimes stores the whole pasted <iframe> snippet (src plus
+  // width/height/style/... attributes) in this field instead of just the
+  // URL. Unescape stray `\"`, then cut at the first real quote so only
+  // the URL survives.
+  return raw.replace(/\\"/g, '"').split('"')[0].trim();
 }
 
 function phones(b: Branch) {
@@ -134,7 +139,7 @@ function InfoCard({
         {lines.length > 0 ? lines.map((l, i) => (
           <p key={i} className="text-[12px] text-[#646464] leading-snug">{l}</p>
         )) : (
-          <p className="text-[12px] text-gray-300">—</p>
+          <p className="text-[12px] text-gray-500">—</p>
         )}
       </div>
     </div>
@@ -233,20 +238,12 @@ export default async function CabangDetailPage({
             {/* ── Sidebar: Map + Info cards ── */}
             <div className={`bg-white md:overflow-hidden md:sticky md:top-24 ${CARD}`}>
               {/* Maps */}
-              {mapSrc && mapSrc.includes("google.com/maps") && (
-                <div className="bg-white">
-                  <iframe
-                    src={mapSrc}
-                    width="100%"
-                    height="240"
-                    style={{ border: 0, display: "block" }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={branch.name}
-                  />
-                </div>
-              )}
+              <MapFacade
+                mapSrc={mapSrc}
+                lat={branch.latitude}
+                lng={branch.longitude}
+                label={branch.name}
+              />
 
               {/* Info cards: Alamat / Telepon / Fax */}
               <div className="px-5! py-5! flex gap-3! md:flex-col md:gap-5! md:p-6!">
